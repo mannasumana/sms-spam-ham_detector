@@ -1,7 +1,0 @@
-services:
-  - type: web
-    name: sms-spam-detector
-    runtime: python
-    buildCommand: pip install -r requirements.txt && python -m nltk.downloader stopwords
-    startCommand: gunicorn --bind 0.0.0.0:$PORT app:app
-    healthCheckPath: /
