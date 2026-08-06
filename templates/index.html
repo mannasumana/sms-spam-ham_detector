@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI SMS Spam Detector</title>
 
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
@@ -19,7 +21,7 @@
 
 <form action="/predict" method="post">
 
-<textarea name="message" placeholder="Type your message here..." required></textarea>
+<textarea name="message" placeholder="Type your message here..." required>{{ message or '' }}</textarea>
 
 <button type="submit">Analyze Message</button>
 
@@ -31,10 +33,16 @@
 
 <h2>{{ prediction }}</h2>
 
+{% if probability is not none %}
 <p>Spam Probability: {{ probability }}%</p>
+{% endif %}
 
 </div>
 
+{% endif %}
+
+{% if error %}
+<p class="error">{{ error }}</p>
 {% endif %}
 
 </div>
